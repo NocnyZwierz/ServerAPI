@@ -25,6 +25,14 @@ router.route('/seats').post((req, res) => {
         return res.status(400).json({ error: 'All information required!' });
     }
 
+    const isSeatTaken = db.seats.some(
+        (item) => item.seat === parseInt(seat) && item.day === parseInt(day)
+    );
+
+    if (isSeatTaken) {
+        return res.status(409).json({ message: "The seat is already booked!" });
+    }
+
     newConcerts = {
         id: uuidv4(),
         day: parseInt(day),
