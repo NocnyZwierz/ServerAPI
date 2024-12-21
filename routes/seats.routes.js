@@ -54,7 +54,6 @@ router.route('/seats/:id').put((req, res) => {
     if (seat) seats.seat = parseInt(seat);
     if (client) seats.client = client;
     if (email) seats.email = email;
-    console.log(db.seats);
     res.json({ message: 'OK' });
 });
 
